@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { createCheckoutSession } from "@/app/actions";
+import { getAllArticles } from "@/lib/articles";
 import { priceLabel } from "@/lib/ebook";
 
 const AMAZON_URL =
@@ -81,27 +83,6 @@ const QUOTES = [
     quote:
       "The doctrine is not merely academic. It reaches the church nursery, the Sunday school room, and the dinner table.",
     source: "From the argument",
-  },
-];
-
-const ARTICLES = [
-  {
-    kicker: "Doctrine",
-    title: "Why the Age of Accountability Matters",
-    summary:
-      "A concise look at why this question changes the way believers think about sin, grace, children, and the character of God.",
-  },
-  {
-    kicker: "Scripture",
-    title: "Old and New Testament Witness",
-    summary:
-      "A guided path through the biblical patterns behind the book's central claim, written for pastors, teachers, and thoughtful readers.",
-  },
-  {
-    kicker: "Formation",
-    title: "What Parents and Churches Can Do",
-    summary:
-      "Practical reflections on training young people with seriousness, tenderness, and confidence in the love of God.",
   },
 ];
 
@@ -205,6 +186,8 @@ function SectionLabel({ children }: { children: ReactNode }) {
 }
 
 export default function Home() {
+  const articles = getAllArticles();
+
   return (
     <>
       <script
@@ -458,25 +441,41 @@ export default function Home() {
             </div>
 
             <div className="mt-12 grid gap-5 lg:grid-cols-3">
-              {ARTICLES.map((article) => (
+              {articles.map((article) => (
                 <article
-                  key={article.title}
+                  key={article.slug}
                   className="min-h-72 rounded-lg border border-ink/10 bg-ivory p-7 transition duration-200 hover:-translate-y-1 hover:border-brick/35 hover:shadow-[0_22px_54px_rgba(42,39,34,0.1)]"
                 >
                   <p className="font-body text-xs font-bold uppercase text-brick">
-                    {article.kicker}
+                    {article.readingMinutes} min read
                   </p>
                   <h3 className="mt-5 font-display text-3xl font-semibold leading-tight text-ink">
-                    {article.title}
+                    <Link
+                      href={`/articles/${article.slug}`}
+                      className="transition hover:text-brick"
+                    >
+                      {article.title}
+                    </Link>
                   </h3>
                   <p className="mt-5 font-body text-base leading-relaxed text-ink-soft">
-                    {article.summary}
+                    {article.excerpt}
                   </p>
-                  <p className="mt-8 font-body text-sm font-bold text-ink">
-                    Coming soon
-                  </p>
+                  <Link
+                    href={`/articles/${article.slug}`}
+                    className="mt-8 inline-flex font-body text-sm font-bold text-ink transition hover:text-brick"
+                  >
+                    Read article
+                  </Link>
                 </article>
               ))}
+            </div>
+            <div className="mt-10 text-center">
+              <Link
+                href="/articles"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-action px-6 py-3 font-body text-sm font-semibold text-ivory transition hover:-translate-y-0.5 hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass"
+              >
+                View all articles
+              </Link>
             </div>
           </div>
         </section>
