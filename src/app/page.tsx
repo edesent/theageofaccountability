@@ -5,6 +5,7 @@ import { getAllArticles } from "@/lib/articles";
 import { priceLabel } from "@/lib/ebook";
 import { AMAZON_URL, ISBN, PAPERBACK_PRICE } from "@/lib/book";
 import PurchaseButton from "@/components/PurchaseButton";
+import MobileNav from "@/components/MobileNav";
 
 const SITE_URL = "https://www.theageofaccountability.com";
 
@@ -137,7 +138,7 @@ export default function Home() {
               Articles
             </a>
           </nav>
-          <div className="hidden sm:block">
+          <div className="hidden md:block">
             <PurchaseButton
               amazonUrl={AMAZON_URL}
               ebookPrice={priceLabel()}
@@ -147,6 +148,7 @@ export default function Home() {
               className="min-h-10 px-5 py-2 text-xs"
             />
           </div>
+          <MobileNav />
         </div>
       </header>
 
@@ -474,7 +476,7 @@ export default function Home() {
       </main>
 
       <footer className="bg-ink text-ivory/64">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-5 py-8 text-center sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:text-left">
           <Image
             src="/age-of-accountability.png"
             alt="The Age of Accountability"
