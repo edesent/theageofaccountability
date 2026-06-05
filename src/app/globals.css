@@ -1,26 +1,67 @@
 @import "tailwindcss";
 
+@theme {
+  --color-chalk: #23292c;
+  --color-chalk-deep: #181c1e;
+  --color-paper: #faf6ef;
+  --color-paper-warm: #f2ebdf;
+  --color-ink: #2c2722;
+  --color-ink-soft: #5b5349;
+  --color-rose: #d98a8a;
+  --color-rose-deep: #c46e6e;
+  --color-gold: #c9a368;
+
+  --font-display: var(--font-display), Georgia, serif;
+  --font-body: var(--font-body), system-ui, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf6ef;
+  --foreground: #2c2722;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Chalk-ruler texture for the hero, echoing the book cover. */
+.chalk-rule {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 46px,
+    rgba(255, 255, 255, 0.08) 46px,
+    rgba(255, 255, 255, 0.08) 48px
+  );
+}
+
+.chalk-grain {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.045) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
