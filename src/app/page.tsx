@@ -1,10 +1,12 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { createCheckoutSession } from "@/app/actions";
+import { priceLabel } from "@/lib/ebook";
 
 const AMAZON_URL =
   "https://www.amazon.com/Age-Accountability-Jerry-Boritzki/dp/B0DN8962YR";
 
-const SITE_URL = "https://theageofaccountability.com";
+const SITE_URL = "https://www.theageofaccountability.com";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -152,6 +154,48 @@ function BuyButton({
   );
 }
 
+function BuyEbookButton({
+  className = "",
+  children,
+  variant = "solid",
+}: {
+  className?: string;
+  children?: ReactNode;
+  variant?: "solid" | "inverse";
+}) {
+  const variantClasses =
+    variant === "inverse"
+      ? "bg-ivory text-action shadow-none hover:bg-ink hover:text-ivory"
+      : "bg-action text-ivory shadow-[0_14px_34px_rgba(47,107,79,0.28)] hover:bg-ink";
+
+  // A Server Action creates the Stripe Checkout session and redirects, so no
+  // secret keys or pricing logic ever reach the browser. Works without JS.
+  return (
+    <form action={createCheckoutSession} className="inline-flex">
+      <button
+        type="submit"
+        className={`group inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 font-body text-sm font-semibold transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass ${variantClasses} ${className}`}
+      >
+        {children ?? `Buy the ebook — ${priceLabel()}`}
+        <svg
+          className="ml-2.5 transition-transform duration-200 group-hover:translate-x-0.5"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.25"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </button>
+    </form>
+  );
+}
+
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <p className="font-body text-xs font-bold uppercase text-brick">
@@ -194,7 +238,9 @@ export default function Home() {
             </a>
           </nav>
           <div className="hidden sm:block">
-            <BuyButton className="min-h-10 px-5 py-2 text-xs">Buy now</BuyButton>
+            <BuyEbookButton className="min-h-10 px-5 py-2 text-xs">
+              Buy ebook
+            </BuyEbookButton>
           </div>
         </div>
       </header>
@@ -216,7 +262,7 @@ export default function Home() {
                 God, and the moment accountability begins?
               </p>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <BuyButton>Buy on Amazon - $12.95</BuyButton>
+                <BuyEbookButton>Buy the ebook — {priceLabel()}</BuyEbookButton>
                 <a
                   href="#case"
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-ivory/25 px-6 py-3 font-body text-sm font-semibold text-ivory transition hover:border-brass hover:text-brass"
@@ -224,6 +270,17 @@ export default function Home() {
                   Explore the doctrine
                 </a>
               </div>
+              <p className="mt-4 font-body text-sm text-ivory/70">
+                Prefer paperback?{" "}
+                <a
+                  href={AMAZON_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-brass underline-offset-4 hover:underline"
+                >
+                  Buy it on Amazon
+                </a>
+              </p>
               <div className="mt-12 grid max-w-2xl grid-cols-3 border-y border-ivory/16">
                 <div className="py-4 pr-4">
                   <p className="font-display text-3xl font-semibold text-brass">
@@ -454,7 +511,12 @@ export default function Home() {
               Recover the doctrine. Read the book carefully and prayerfully.
             </p>
             <div className="mt-9 flex flex-col items-center gap-4">
-              <BuyButton variant="inverse">Get the book on Amazon</BuyButton>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <BuyEbookButton variant="inverse">
+                  Buy the ebook — {priceLabel()}
+                </BuyEbookButton>
+                <BuyButton variant="inverse">Paperback on Amazon</BuyButton>
+              </div>
               <p className="font-body text-xs font-semibold uppercase text-ivory/70">
                 Paperback - ISBN 979-8-9894804-0-1
               </p>

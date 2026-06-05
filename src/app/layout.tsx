@@ -15,7 +15,7 @@ const body = Inter({
   display: "swap",
 });
 
-const SITE_URL = "https://theageofaccountability.com";
+const SITE_URL = "https://www.theageofaccountability.com";
 const SITE_TITLE = "The Age of Accountability — a book by Jerry Boritzki";
 const SITE_DESCRIPTION =
   "A doctrine grounded in Scripture, not human reasoning. Over two decades in the making, The Age of Accountability by Jerry Boritzki examines what the Bible itself teaches about young people, the love of God, and when accountability begins.";
