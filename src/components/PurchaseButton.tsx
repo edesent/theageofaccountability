@@ -88,9 +88,6 @@ export default function PurchaseButton({
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!open) return;
@@ -118,7 +115,7 @@ export default function PurchaseButton({
       </button>
 
       {open &&
-        mounted &&
+        typeof document !== "undefined" &&
         createPortal(
           <div
             className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4 sm:p-6"
