@@ -73,7 +73,7 @@ function BuyButton({
       href={AMAZON_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex min-h-12 items-center justify-center rounded-full bg-brick px-6 py-3 font-body text-sm font-semibold text-ivory shadow-[0_14px_34px_rgba(131,54,35,0.22)] transition duration-200 hover:-translate-y-0.5 hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass ${className}`}
+      className={`inline-flex min-h-12 items-center justify-center rounded-full bg-action px-6 py-3 font-body text-sm font-semibold text-ivory shadow-[0_14px_34px_rgba(47,107,79,0.28)] transition duration-200 hover:-translate-y-0.5 hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass ${className}`}
     >
       {children}
       <span className="ml-3" aria-hidden="true">
@@ -371,13 +371,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-brick text-ivory">
+        <section className="bg-action text-ivory">
           <div className="mx-auto max-w-7xl px-5 py-16 text-center sm:px-8 md:py-20">
             <p className="mx-auto max-w-4xl font-display text-4xl font-semibold leading-tight sm:text-6xl">
               Recover the doctrine. Read the book carefully and prayerfully.
             </p>
             <div className="mt-9 flex flex-col items-center gap-4">
-              <BuyButton className="bg-ivory text-brick shadow-none hover:bg-ink hover:text-ivory">
+              <BuyButton className="bg-ivory text-action shadow-none hover:bg-ink hover:text-ivory">
                 Get the book on Amazon
               </BuyButton>
               <p className="font-body text-xs font-semibold uppercase text-ivory/70">
