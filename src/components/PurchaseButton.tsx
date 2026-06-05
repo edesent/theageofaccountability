@@ -3,6 +3,9 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { createPortal, useFormStatus } from "react-dom";
 import { createCheckoutSession } from "@/app/actions";
+import { fbTrack } from "@/lib/fbq";
+
+const priceToNumber = (s: string) => Number(s.replace(/[^0-9.]/g, "")) || undefined;
 
 type Variant = "solid" | "inverse";
 
@@ -40,6 +43,14 @@ function EbookSubmit({ price }: { price: string }) {
     <button
       type="submit"
       disabled={pending}
+      onClick={() =>
+        fbTrack("InitiateCheckout", {
+          content_name: "The Age of Accountability (ebook)",
+          content_type: "product",
+          value: priceToNumber(price),
+          currency: "USD",
+        })
+      }
       className="group flex w-full items-center gap-4 rounded-xl border border-ink/12 bg-ivory p-5 text-left transition hover:border-action hover:bg-action/5 disabled:cursor-wait disabled:opacity-70"
     >
       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-action/10 text-action">
@@ -107,7 +118,13 @@ export default function PurchaseButton({
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+          fbTrack("ViewContent", {
+            content_name: "The Age of Accountability",
+            content_type: "product",
+          });
+        }}
         className={`${TRIGGER_BASE} ${TRIGGER_VARIANT[variant]} ${className}`}
       >
         {label}

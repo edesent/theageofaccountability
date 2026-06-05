@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getStripe } from "@/lib/stripe";
 import { createDownloadToken } from "@/lib/download-token";
 import { EBOOK, priceLabel } from "@/lib/ebook";
+import PurchaseTracking from "@/components/PurchaseTracking";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +30,10 @@ export default async function SuccessPage({
     <main className="mx-auto flex min-h-screen max-w-2xl flex-col justify-center px-6 py-20">
       {paid ? (
         <div className="rounded-3xl bg-ivory p-8 shadow-[0_24px_60px_rgba(20,20,20,0.10)] sm:p-12">
+          <PurchaseTracking
+            value={EBOOK.priceCents / 100}
+            currency={EBOOK.currency.toUpperCase()}
+          />
           <p className="font-body text-xs font-bold uppercase text-brick">
             Payment confirmed
           </p>

@@ -1,4 +1,7 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { Suspense } from "react";
+import MetaPixel from "@/components/MetaPixel";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -100,6 +103,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         {children}
+        <Analytics />
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
       </body>
     </html>
   );
