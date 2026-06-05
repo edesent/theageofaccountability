@@ -3,12 +3,8 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { getAllArticles } from "@/lib/articles";
 import { priceLabel } from "@/lib/ebook";
+import { AMAZON_URL, ISBN, PAPERBACK_PRICE } from "@/lib/book";
 import PurchaseButton from "@/components/PurchaseButton";
-
-const ISBN = "979-8-9894804-0-1";
-
-const AMAZON_URL =
-  "https://www.amazon.com/Age-Accountability-Jerry-Boritzki/dp/B0DN8962YR";
 
 const SITE_URL = "https://www.theageofaccountability.com";
 
@@ -132,7 +128,7 @@ export default function Home() {
             className="hidden items-center gap-7 font-body text-sm font-semibold text-ink-soft md:flex"
           >
             <a className="transition hover:text-brick" href="#case">
-              The case
+              The question
             </a>
             <a className="transition hover:text-brick" href="#quotes">
               Quotes
@@ -144,9 +140,10 @@ export default function Home() {
           <div className="hidden sm:block">
             <PurchaseButton
               amazonUrl={AMAZON_URL}
-              price={priceLabel()}
+              ebookPrice={priceLabel()}
+              paperbackPrice={PAPERBACK_PRICE}
               isbn={ISBN}
-              label="Buy"
+              label="Buy book"
               className="min-h-10 px-5 py-2 text-xs"
             />
           </div>
@@ -172,7 +169,8 @@ export default function Home() {
               <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <PurchaseButton
                   amazonUrl={AMAZON_URL}
-                  price={priceLabel()}
+                  ebookPrice={priceLabel()}
+                  paperbackPrice={PAPERBACK_PRICE}
                   isbn={ISBN}
                 />
                 <a
@@ -463,7 +461,8 @@ export default function Home() {
               <PurchaseButton
                 variant="inverse"
                 amazonUrl={AMAZON_URL}
-                price={priceLabel()}
+                ebookPrice={priceLabel()}
+                paperbackPrice={PAPERBACK_PRICE}
                 isbn={ISBN}
               />
               <p className="font-body text-xs font-semibold uppercase text-ivory/70">

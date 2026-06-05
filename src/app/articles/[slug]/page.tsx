@@ -4,6 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { getAllArticles, getArticle } from "@/lib/articles";
+import { priceLabel } from "@/lib/ebook";
+import { AMAZON_URL, ISBN, PAPERBACK_PRICE } from "@/lib/book";
+import PurchaseButton from "@/components/PurchaseButton";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -72,12 +75,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               className="h-10 w-auto sm:h-12"
             />
           </Link>
-          <Link
-            href="/articles"
-            className="font-body text-sm font-semibold text-ink-soft transition hover:text-brick"
-          >
-            All articles
-          </Link>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/articles"
+              className="hidden font-body text-sm font-semibold text-ink-soft transition hover:text-brick sm:inline"
+            >
+              All articles
+            </Link>
+            <PurchaseButton
+              amazonUrl={AMAZON_URL}
+              ebookPrice={priceLabel()}
+              paperbackPrice={PAPERBACK_PRICE}
+              isbn={ISBN}
+              label="Buy book"
+              className="min-h-10 px-5 py-2 text-xs"
+            />
+          </div>
         </div>
       </header>
 
@@ -123,10 +136,37 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <div className="mt-14 border-t border-ink/10 pt-8">
                 <Link
                   href="/articles"
-                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-action px-5 py-2 font-body text-sm font-semibold text-ivory transition hover:-translate-y-0.5 hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass"
+                  className="font-body text-sm font-semibold text-ink-soft underline-offset-4 transition hover:text-brick hover:underline"
                 >
-                  Back to all articles
+                  &larr; Back to all articles
                 </Link>
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-ink text-ivory">
+            <div className="mx-auto flex max-w-3xl flex-col items-start gap-6 px-5 py-14 sm:px-8 md:flex-row md:items-center md:justify-between md:py-16">
+              <div className="min-w-0">
+                <p className="font-body text-sm font-semibold uppercase text-brass">
+                  Keep reading
+                </p>
+                <h2 className="mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl">
+                  The full case is in the book.
+                </h2>
+                <p className="mt-3 font-body text-base leading-relaxed text-ivory/76">
+                  Read the whole biblical argument in{" "}
+                  <em>The Age of Accountability</em> &mdash; available as an
+                  ebook or paperback.
+                </p>
+              </div>
+              <div className="shrink-0">
+                <PurchaseButton
+                  variant="inverse"
+                  amazonUrl={AMAZON_URL}
+                  ebookPrice={priceLabel()}
+                  paperbackPrice={PAPERBACK_PRICE}
+                  isbn={ISBN}
+                />
               </div>
             </div>
           </section>

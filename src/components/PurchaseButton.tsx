@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import { useFormStatus } from "react-dom";
+import { createPortal, useFormStatus } from "react-dom";
 import { createCheckoutSession } from "@/app/actions";
 
 type Variant = "solid" | "inverse";
@@ -72,20 +72,25 @@ function EbookSubmit({ price }: { price: string }) {
 
 export default function PurchaseButton({
   amazonUrl,
-  price,
+  ebookPrice,
+  paperbackPrice,
   isbn,
   label = "Buy the book",
   variant = "solid",
   className = "",
 }: {
   amazonUrl: string;
-  price: string;
+  ebookPrice: string;
+  paperbackPrice: string;
   isbn?: string;
   label?: ReactNode;
   variant?: Variant;
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!open) return;
@@ -112,13 +117,15 @@ export default function PurchaseButton({
         <Arrow />
       </button>
 
-      {open && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="purchase-dialog-title"
-        >
+      {open &&
+        mounted &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto p-4 sm:p-6"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="purchase-dialog-title"
+          >
           <button
             type="button"
             aria-label="Close"
@@ -159,7 +166,7 @@ export default function PurchaseButton({
             <div className="mt-6 flex flex-col gap-3">
               {/* Ebook — Stripe Checkout via the server action. */}
               <form action={createCheckoutSession}>
-                <EbookSubmit price={price} />
+                <EbookSubmit price={ebookPrice} />
               </form>
 
               {/* Paperback — fulfilled by Amazon. */}
@@ -193,7 +200,7 @@ export default function PurchaseButton({
                   </span>
                 </span>
                 <span className="font-body text-sm font-bold text-action">
-                  {price}
+                  {paperbackPrice}
                 </span>
               </a>
             </div>
@@ -203,9 +210,10 @@ export default function PurchaseButton({
                 Paperback ISBN {isbn}
               </p>
             )}
-          </div>
-        </div>
-      )}
+            </div>
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
