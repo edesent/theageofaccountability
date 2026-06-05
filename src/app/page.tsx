@@ -234,7 +234,9 @@ export default function Home() {
             <div className="min-w-0">
               <SectionLabel>The book</SectionLabel>
               <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-                A compact work with a very large question at its center.
+                What if the &ldquo;age of accountability&rdquo; isn&rsquo;t a
+                mystery &mdash; but a doctrine written plainly throughout the
+                Bible?
               </h2>
             </div>
             <div className="grid min-w-0 gap-6 font-body text-lg leading-relaxed text-ink-soft sm:grid-cols-2">
