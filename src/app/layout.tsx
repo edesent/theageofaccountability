@@ -17,7 +17,7 @@ const body = Inter({
 
 const SITE_TITLE = "The Age of Accountability — a book by Jerry Boritzki";
 const SITE_DESCRIPTION =
-  "A lost doctrine recovered. Over two decades in the making, The Age of Accountability by Jerry Boritzki explores what Scripture truly teaches about young people, the love of God, and when accountability begins.";
+  "A doctrine grounded in Scripture, not human reasoning. Over two decades in the making, The Age of Accountability by Jerry Boritzki examines what the Bible itself teaches about young people, the love of God, and when accountability begins.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theageofaccountability.com"),

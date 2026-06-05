@@ -129,7 +129,7 @@ export default function Home() {
           <div className="relative mx-auto grid max-w-7xl items-center gap-9 px-5 pb-14 pt-12 sm:px-8 sm:pb-18 md:gap-12 lg:min-h-[calc(90svh-73px)] lg:grid-cols-[1.04fr_0.96fr] lg:py-10">
             <div className="min-w-0 max-w-3xl">
               <p className="font-body text-sm font-semibold uppercase text-brass">
-                A lost doctrine, recovered
+                Rooted in Scripture, not human reasoning
               </p>
               <h1 className="mt-5 max-w-4xl font-display text-[3rem] font-semibold leading-[0.96] text-balance sm:text-[6.4rem] lg:text-[7.7rem]">
                 The Age of Accountability
