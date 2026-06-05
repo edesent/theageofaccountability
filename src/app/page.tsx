@@ -407,6 +407,18 @@ export default function Home() {
               <h2 className="mt-4 font-display text-5xl font-semibold leading-tight text-ink">
                 Jerry Boritzki
               </h2>
+              <div className="mt-8 max-w-xs">
+                <Image
+                  src="/images/author.jpg"
+                  alt="Jerry Boritzki, author of The Age of Accountability"
+                  width={900}
+                  height={900}
+                  className="w-full rounded-2xl object-cover shadow-[0_24px_60px_rgba(42,39,34,0.18)] ring-1 ring-ink/10"
+                />
+                <p className="mt-3 font-body text-sm text-ink-soft/80">
+                  Jerry Boritzki
+                </p>
+              </div>
             </div>
             <div className="min-w-0 max-w-3xl">
               <p className="font-body text-xl leading-relaxed text-ink-soft">
