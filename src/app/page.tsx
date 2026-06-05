@@ -162,11 +162,15 @@ export default function Home() {
       />
       <header className="sticky top-0 z-50 border-b border-ink/10 bg-ivory/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
-          <a
-            href="#top"
-            className="font-display text-xl font-semibold leading-none text-ink sm:text-2xl"
-          >
-            The Age of Accountability
+          <a href="#top" aria-label="The Age of Accountability — home">
+            <Image
+              src="/age-of-accountability.png"
+              alt="The Age of Accountability"
+              width={673}
+              height={200}
+              priority
+              className="h-10 w-auto sm:h-12"
+            />
           </a>
           <nav
             aria-label="Primary navigation"
@@ -456,9 +460,13 @@ export default function Home() {
 
       <footer className="bg-ink text-ivory/64">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <p className="font-display text-xl font-semibold text-ivory">
-            The Age of Accountability
-          </p>
+          <Image
+            src="/age-of-accountability.png"
+            alt="The Age of Accountability"
+            width={673}
+            height={200}
+            className="h-9 w-auto brightness-0 invert"
+          />
           <p className="font-body text-sm">
             &copy; {new Date().getFullYear()} Jerry Boritzki. All rights
             reserved.
