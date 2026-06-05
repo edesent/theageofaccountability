@@ -508,7 +508,7 @@ export default function Home() {
         <section className="bg-action text-ivory">
           <div className="mx-auto max-w-7xl px-5 py-16 text-center sm:px-8 md:py-20">
             <p className="mx-auto max-w-4xl font-display text-4xl font-semibold leading-tight sm:text-6xl">
-              Recover the doctrine. Read the book carefully and prayerfully.
+              Let Scripture speak. Read the book carefully and prayerfully.
             </p>
             <div className="mt-9 flex flex-col items-center gap-4">
               <div className="flex flex-col gap-3 sm:flex-row">
