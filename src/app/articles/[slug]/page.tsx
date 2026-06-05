@@ -61,7 +61,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <>
       <header className="border-b border-ink/10 bg-ivory">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
+        <div className="mx-auto flex max-w-3xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
           <Link href="/" aria-label="The Age of Accountability - home">
             <Image
               src="/age-of-accountability.png"
@@ -84,7 +84,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <main>
         <article>
           <section className="bg-ink text-ivory">
-            <div className="mx-auto max-w-4xl px-5 py-16 sm:px-8 md:py-24">
+            <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 md:py-24">
               <p className="font-body text-sm font-semibold uppercase text-brass">
                 {article.readingMinutes} min read
               </p>
@@ -134,7 +134,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </main>
 
       <footer className="bg-ink text-ivory/64">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <div className="mx-auto flex max-w-3xl flex-col gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <Image
             src="/age-of-accountability.png"
             alt="The Age of Accountability"
