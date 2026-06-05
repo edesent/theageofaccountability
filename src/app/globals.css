@@ -1,67 +1,108 @@
 @import "tailwindcss";
 
 @theme {
-  --color-chalk: #23292c;
-  --color-chalk-deep: #181c1e;
-  --color-paper: #faf6ef;
-  --color-paper-warm: #f2ebdf;
-  --color-ink: #2c2722;
-  --color-ink-soft: #5b5349;
-  --color-rose: #d98a8a;
-  --color-rose-deep: #c46e6e;
-  --color-gold: #c9a368;
+  --color-ink: #252821;
+  --color-slate: #2f4b54;
+  --color-ivory: #fbf7ee;
+  --color-paper: #f0e7d6;
+  --color-brick: #8b3f2b;
+  --color-brass: #d2a94a;
+  --color-sage: #8fa58b;
+  --color-ink-soft: #615a4d;
 
   --font-display: var(--font-display), Georgia, serif;
   --font-body: var(--font-body), system-ui, sans-serif;
 }
 
 :root {
-  --background: #faf6ef;
-  --foreground: #2c2722;
+  --background: #fbf7ee;
+  --foreground: #252821;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
+  max-width: 100%;
   scroll-behavior: smooth;
+  width: 100%;
 }
 
 body {
-  background: var(--background);
+  background:
+    linear-gradient(rgba(37, 40, 33, 0.025) 1px, transparent 1px),
+    var(--background);
+  background-size: 100% 28px;
   color: var(--foreground);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  max-width: 100%;
+  overflow-x: hidden;
   text-rendering: optimizeLegibility;
+  width: 100%;
 }
 
-/* Chalk-ruler texture for the hero, echoing the book cover. */
-.chalk-rule {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 46px,
-    rgba(255, 255, 255, 0.08) 46px,
-    rgba(255, 255, 255, 0.08) 48px
-  );
+header,
+main,
+section,
+footer {
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
 }
 
-.chalk-grain {
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.045) 1px,
-    transparent 1px
-  );
-  background-size: 4px 4px;
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
 }
 
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+::selection {
+  background: #d2a94a;
+  color: #252821;
 }
 
-.fade-up {
-  animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+.slate-grid {
+  background:
+    linear-gradient(rgba(251, 247, 238, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 247, 238, 0.055) 1px, transparent 1px),
+    radial-gradient(circle at 22% 26%, rgba(210, 169, 74, 0.18), transparent 28rem),
+    linear-gradient(135deg, #252821 0%, #2f4b54 52%, #1e211c 100%);
+  background-size:
+    48px 48px,
+    48px 48px,
+    auto,
+    auto;
+}
+
+.book-stage {
+  position: relative;
+  isolation: isolate;
+}
+
+.book-stage::before,
+.book-stage::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(251, 247, 238, 0.16);
+  border-radius: 8px;
+  inset: 9% 4% 8% 22%;
+  transform: rotate(3deg);
+}
+
+.book-stage::after {
+  inset: 14% 11% 3% 15%;
+  border-color: rgba(210, 169, 74, 0.25);
+  transform: rotate(-4deg);
+}
+
+.book-shadow {
+  position: absolute;
+  inset: auto 8% -2rem 8%;
+  z-index: -1;
+  height: 5rem;
+  background: rgba(0, 0, 0, 0.38);
+  border-radius: 50%;
+  filter: blur(24px);
 }
