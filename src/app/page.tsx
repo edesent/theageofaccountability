@@ -115,16 +115,23 @@ const AUDIENCE = [
 function BuyButton({
   className = "",
   children = "Buy on Amazon",
+  variant = "solid",
 }: {
   className?: string;
   children?: ReactNode;
+  variant?: "solid" | "inverse";
 }) {
+  const variantClasses =
+    variant === "inverse"
+      ? "bg-ivory text-action shadow-none hover:bg-ink hover:text-ivory"
+      : "bg-action text-ivory shadow-[0_14px_34px_rgba(47,107,79,0.28)] hover:bg-ink";
+
   return (
     <a
       href={AMAZON_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex min-h-12 items-center justify-center rounded-full bg-action px-6 py-3 font-body text-sm font-semibold text-ivory shadow-[0_14px_34px_rgba(47,107,79,0.28)] transition duration-200 hover:-translate-y-0.5 hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass ${className}`}
+      className={`group inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 font-body text-sm font-semibold transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass ${variantClasses} ${className}`}
     >
       {children}
       <svg
@@ -447,9 +454,7 @@ export default function Home() {
               Recover the doctrine. Read the book carefully and prayerfully.
             </p>
             <div className="mt-9 flex flex-col items-center gap-4">
-              <BuyButton className="bg-ivory text-action shadow-none hover:bg-ink hover:text-ivory">
-                Get the book on Amazon
-              </BuyButton>
+              <BuyButton variant="inverse">Get the book on Amazon</BuyButton>
               <p className="font-body text-xs font-semibold uppercase text-ivory/70">
                 Paperback - ISBN 979-8-9894804-0-1
               </p>
