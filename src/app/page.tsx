@@ -4,6 +4,57 @@ import type { ReactNode } from "react";
 const AMAZON_URL =
   "https://www.amazon.com/Age-Accountability-Jerry-Boritzki/dp/B0DN8962YR";
 
+const SITE_URL = "https://theageofaccountability.com";
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: "The Age of Accountability",
+      description:
+        "A doctrine grounded in Scripture, not human reasoning — the official book site for The Age of Accountability by Jerry Boritzki.",
+      inLanguage: "en-US",
+      publisher: { "@id": `${SITE_URL}/#author` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#author`,
+      name: "Jerry Boritzki",
+      jobTitle: "Author",
+      description:
+        "Author of The Age of Accountability, a self-published study built over two decades on what Scripture teaches about young people and the love of God.",
+    },
+    {
+      "@type": "Book",
+      "@id": `${SITE_URL}/#book`,
+      name: "The Age of Accountability",
+      url: `${SITE_URL}/`,
+      author: { "@id": `${SITE_URL}/#author` },
+      inLanguage: "en",
+      isbn: "9798989480401",
+      bookFormat: "https://schema.org/Paperback",
+      datePublished: "2023-10-16",
+      genre: "Religion & Spirituality",
+      image: `${SITE_URL}/images/book-front.jpg`,
+      abstract:
+        "A biblical examination of the age of accountability — what Scripture teaches about young people, the love of God, and the moment a person becomes accountable for sin.",
+      sameAs: AMAZON_URL,
+      offers: {
+        "@type": "Offer",
+        url: AMAZON_URL,
+        price: "12.95",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
+        seller: { "@type": "Organization", name: "Amazon" },
+      },
+    },
+  ],
+};
+
 const QUESTIONS = [
   "What is the significance of the age of accountability?",
   "What does the Old Testament teach about this subject?",
@@ -73,12 +124,23 @@ function BuyButton({
       href={AMAZON_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex min-h-12 items-center justify-center rounded-full bg-action px-6 py-3 font-body text-sm font-semibold text-ivory shadow-[0_14px_34px_rgba(47,107,79,0.28)] transition duration-200 hover:-translate-y-0.5 hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass ${className}`}
+      className={`group inline-flex min-h-12 items-center justify-center rounded-full bg-action px-6 py-3 font-body text-sm font-semibold text-ivory shadow-[0_14px_34px_rgba(47,107,79,0.28)] transition duration-200 hover:-translate-y-0.5 hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass ${className}`}
     >
       {children}
-      <span className="ml-3" aria-hidden="true">
-        -&gt;
-      </span>
+      <svg
+        className="ml-2.5 transition-transform duration-200 group-hover:translate-x-0.5"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </svg>
     </a>
   );
 }
@@ -94,6 +156,10 @@ function SectionLabel({ children }: { children: ReactNode }) {
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+      />
       <header className="sticky top-0 z-50 border-b border-ink/10 bg-ivory/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
           <a
