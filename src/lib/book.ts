@@ -5,5 +5,9 @@ export const AMAZON_URL =
 
 export const ISBN = "979-8-9894804-0-1";
 
-// The paperback is sold by Amazon at this price (distinct from the ebook).
-export const PAPERBACK_PRICE = "$12.95";
+// The paperback is sold by Amazon. Change this ONE number and it updates the
+// purchase picker, the mobile menu, and the JSON-LD structured data.
+export const PAPERBACK_PRICE_USD = 12.95;
+
+// Display string ("$12.95") derived from the number above.
+export const PAPERBACK_PRICE = `$${PAPERBACK_PRICE_USD.toFixed(2)}`;

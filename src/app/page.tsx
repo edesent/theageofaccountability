@@ -3,7 +3,12 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { getAllArticles } from "@/lib/articles";
 import { priceLabel } from "@/lib/ebook";
-import { AMAZON_URL, ISBN, PAPERBACK_PRICE } from "@/lib/book";
+import {
+  AMAZON_URL,
+  ISBN,
+  PAPERBACK_PRICE,
+  PAPERBACK_PRICE_USD,
+} from "@/lib/book";
 import PurchaseButton from "@/components/PurchaseButton";
 import MobileNav from "@/components/MobileNav";
 
@@ -49,7 +54,7 @@ const JSON_LD = {
       offers: {
         "@type": "Offer",
         url: AMAZON_URL,
-        price: "12.95",
+        price: PAPERBACK_PRICE_USD.toFixed(2),
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
         itemCondition: "https://schema.org/NewCondition",
