@@ -119,6 +119,21 @@ const FAMILY_QUESTIONS = [
   },
 ];
 
+// Sermon series on the age of accountability (Oxbow Lake Baptist Church).
+// Add more parts here — just the YouTube id, a label, and a title.
+const SERMONS = [
+  {
+    id: "e-1HbG8T8Ro",
+    label: "Part 2",
+    title: "The Age of Accountability — Part 2",
+  },
+  {
+    id: "XpkSl6tm9es",
+    label: "Part 3",
+    title: "The Age of Accountability — Part 3",
+  },
+];
+
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <p className="font-body text-xs font-bold uppercase text-brick">
@@ -157,6 +172,9 @@ export default function Home() {
             </a>
             <a className="transition hover:text-brick" href="#quotes">
               Quotes
+            </a>
+            <a className="transition hover:text-brick" href="#preaching">
+              Preaching
             </a>
             <a className="transition hover:text-brick" href="#articles">
               Articles
@@ -353,7 +371,20 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 lg:grid-cols-3">
+            <figure className="mx-auto mt-12 max-w-3xl text-center">
+              <blockquote className="font-display text-2xl font-medium leading-snug text-ink sm:text-3xl">
+                &ldquo;A must-read for every Christian parent. It brings relief
+                to parents currently raising children, comfort to those who have
+                lost a child, and hope for everyone. The truths in this book
+                help every reader better understand the love of God.&rdquo;
+              </blockquote>
+              <figcaption className="mt-6 font-body text-sm font-bold uppercase tracking-wide text-brick">
+                One reader ordered fifty more &mdash; a copy for every pastor
+                and Bible college they knew
+              </figcaption>
+            </figure>
+
+            <div className="mt-14 grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 lg:grid-cols-3">
               {QUOTES.map((item) => (
                 <figure key={item.quote} className="min-w-0 bg-paper p-7 sm:p-8">
                   <blockquote className="font-display text-2xl font-semibold leading-snug text-ink">
@@ -400,6 +431,45 @@ export default function Home() {
                   </span>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="preaching" className="bg-ivory">
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 md:py-28">
+            <div className="max-w-3xl">
+              <SectionLabel>Preaching on the subject</SectionLabel>
+              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+                Hear the doctrine taught, verse by verse.
+              </h2>
+              <p className="mt-5 font-body text-lg leading-relaxed text-ink-soft">
+                A sermon series working through the age of accountability from
+                Scripture. More messages will be added as they become available.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-8 md:grid-cols-2">
+              {SERMONS.map((sermon) => (
+                <figure key={sermon.id} className="min-w-0">
+                  <div className="relative aspect-video overflow-hidden rounded-xl shadow-[0_22px_54px_rgba(42,39,34,0.14)] ring-1 ring-ink/10">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${sermon.id}`}
+                      title={sermon.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="absolute inset-0 h-full w-full"
+                    />
+                  </div>
+                  <figcaption className="mt-4">
+                    <span className="font-body text-xs font-bold uppercase tracking-wide text-brick">
+                      {sermon.label}
+                    </span>
+                    <p className="mt-1 font-display text-2xl font-semibold leading-tight text-ink">
+                      {sermon.title}
+                    </p>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </section>

@@ -8,6 +8,7 @@ import { AMAZON_URL, ISBN, PAPERBACK_PRICE } from "@/lib/book";
 const LINKS = [
   { href: "#case", label: "The question" },
   { href: "#quotes", label: "Quotes" },
+  { href: "#preaching", label: "Preaching" },
   { href: "#articles", label: "Articles" },
 ];
 
