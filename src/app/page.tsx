@@ -238,17 +238,18 @@ export default function Home() {
             </div>
 
             <div className="relative mx-auto flex w-full min-w-0 max-w-[31rem] items-center justify-center lg:justify-end">
-              <div className="book-stage w-full">
-                <div className="book-shadow" aria-hidden />
-                <Image
-                  src="/images/book-front.jpg"
-                  alt="The Age of Accountability book cover"
-                  width={331}
-                  height={500}
-                  priority
-                  className="relative mx-auto w-[68%] max-w-[16rem] rounded-md shadow-[0_34px_90px_rgba(0,0,0,0.54)] ring-1 ring-white/15 sm:max-w-[22rem] lg:w-[74%]"
-                />
-              </div>
+              <div
+                className="absolute -inset-6 rounded-[2rem] bg-brass/10 blur-3xl"
+                aria-hidden
+              />
+              <Image
+                src="/images/guy-holding-book.jpg"
+                alt="A reader holding The Age of Accountability"
+                width={893}
+                height={1600}
+                priority
+                className="relative mx-auto w-[78%] max-w-[20rem] rounded-2xl shadow-[0_34px_90px_rgba(0,0,0,0.5)] ring-1 ring-white/15 sm:max-w-[24rem] lg:w-[92%]"
+              />
             </div>
           </div>
         </section>
