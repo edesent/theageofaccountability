@@ -1,7 +1,7 @@
 ---
 title: "David, His Son, and When Accountability Begins"
 excerpt: "Most Christians know one verse on the age of accountability — David's confidence that he would see his son again. The book asks where that confidence actually ends."
-status: "draft"
+status: "published"
 source: "Based on The Age of Accountability manuscript"
 ---
 

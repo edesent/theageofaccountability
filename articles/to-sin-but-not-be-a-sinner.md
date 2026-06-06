@@ -1,7 +1,7 @@
 ---
 title: "To Sin but Not Be a Sinner: How an Infant Can Be in Heaven"
 excerpt: "Nearly everyone believes an infant who dies is with the Lord. The book asks what must actually be true for that to hold — and answers from Scripture rather than sentiment."
-status: "draft"
+status: "published"
 source: "Based on The Age of Accountability manuscript"
 ---
 
