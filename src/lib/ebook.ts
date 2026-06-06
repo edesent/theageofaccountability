@@ -6,8 +6,8 @@ export type EbookFormat = "pdf" | "epub";
 export const EBOOK = {
   title: "The Age of Accountability",
   author: "Jerry Boritzki",
-  // Price the buyer pays, in the smallest currency unit (cents). 499 = $4.99.
-  priceCents: 499,
+  // Price the buyer pays, in the smallest currency unit (cents). 699 = $6.99.
+  priceCents: 699,
   currency: "usd",
   // Formats you offer for download. The source files live in /private (see below).
   // PDF is watermarked per-buyer; EPUB is delivered as-is (EPUB can't be reliably watermarked).
