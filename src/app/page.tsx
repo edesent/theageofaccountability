@@ -95,6 +95,25 @@ const AUDIENCE = [
   "Every believer",
 ];
 
+const FAMILY_QUESTIONS = [
+  {
+    eyebrow: "When does it begin?",
+    body: "When does a person become eternally accountable to God for their sins? We know David was confident that he would see his son again.",
+  },
+  {
+    eyebrow: "What Heaven requires",
+    body: "For an infant to be in Heaven, two things must be explained: their name must be written in the Lamb’s Book of Life, and no sin can be imputed against them.",
+  },
+  {
+    eyebrow: "The child who never chose",
+    body: "Most everyone agrees that an aborted baby, a child lost through miscarriage, or an infant has not reached the age of accountability. So when does a child become eternally accountable for their sin nature and their sins?",
+  },
+  {
+    eyebrow: "What do you believe?",
+    body: "At what age do you believe God will not take a child to Heaven if they die before exercising faith in Christ? What Scripture supports your belief?",
+  },
+];
+
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <p className="font-body text-xs font-bold uppercase text-brick">
@@ -284,6 +303,38 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-ink text-ivory">
+          <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 md:py-28">
+            <div className="max-w-3xl">
+              <p className="font-body text-sm font-semibold uppercase text-brass">
+                For young families
+              </p>
+              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight sm:text-5xl">
+                One of the most important doctrines for young families &mdash;
+                so why has it been so ignored?
+              </h2>
+            </div>
+            <div className="mt-12 grid gap-5 md:grid-cols-2">
+              {FAMILY_QUESTIONS.map((q) => (
+                <div
+                  key={q.eyebrow}
+                  className="flex flex-col rounded-2xl border border-ivory/15 bg-ivory/[0.04] p-7 transition duration-200 hover:border-brass/45"
+                >
+                  <p className="font-body text-xs font-bold uppercase tracking-wide text-brass">
+                    {q.eyebrow}
+                  </p>
+                  <p className="mt-3 font-body text-lg leading-relaxed text-ivory/85">
+                    {q.body}
+                  </p>
+                  <p className="mt-5 font-display text-2xl font-semibold text-ivory">
+                    What does the Bible say?
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
