@@ -76,18 +76,18 @@ const QUESTIONS = [
 const QUOTES = [
   {
     quote:
+      "Knowing that Heaven is real, God’s grace is real, and Judah is in Heaven is how I make it through each day. Still sad, still missing him — but the peace I have from the Lord and His Word is ultimately what gets me through.",
+    source: "A grieving parent",
+  },
+  {
+    quote:
+      "The wisest man I know, teaching on the age of accountability. I highly recommend you listen if you have children. It’s such an excellent study, and he has a book available if you’re interested.",
+    source: "A listener",
+  },
+  {
+    quote:
       "This could be the most important book any Christian has read in the past decade.",
     source: "Reader response",
-  },
-  {
-    quote:
-      "A small book with a large claim: Scripture has not been silent about young people.",
-    source: "Study note",
-  },
-  {
-    quote:
-      "The doctrine is not merely academic. It reaches the church nursery, the Sunday school room, and the dinner table.",
-    source: "From the argument",
   },
 ];
 
@@ -357,7 +357,7 @@ export default function Home() {
             <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 lg:grid-cols-3">
               {QUOTES.map((item) => (
                 <figure key={item.quote} className="min-w-0 bg-paper p-7 sm:p-8">
-                  <blockquote className="font-display text-3xl font-semibold leading-tight text-ink">
+                  <blockquote className="font-display text-2xl font-semibold leading-snug text-ink">
                     &ldquo;{item.quote}&rdquo;
                   </blockquote>
                   <figcaption className="mt-7 border-t border-ink/10 pt-4 font-body text-sm font-bold uppercase text-brick">
@@ -481,7 +481,32 @@ export default function Home() {
               </div>
             </div>
             <div className="min-w-0 max-w-3xl">
-              <p className="font-body text-xl leading-relaxed text-ink-soft">
+              <figure className="border-l-2 border-brick/40 pl-6">
+                <figcaption className="font-body text-xs font-bold uppercase text-brick">
+                  A message from the author
+                </figcaption>
+                <blockquote className="mt-4 space-y-4 font-display text-2xl leading-snug text-ink">
+                  <p>
+                    The book I wrote brings up and answers a number of
+                    questions. One unique question concerns the Book of Life.
+                    Only those whose names are written in the Book of Life can
+                    enter Heaven. Most believe that all infants go to Heaven
+                    &mdash; so if they do, their name must be in the Book. What
+                    happens, then, when they never accept Christ?
+                  </p>
+                  <p>
+                    Order and read the book that has been a burden on my heart
+                    for so many years. It will improve your family, your church,
+                    and your understanding of the GRACE of God in so many ways
+                    &mdash; and it will answer many other questions you may not
+                    have had answers for in the past. Enjoy.
+                  </p>
+                </blockquote>
+                <p className="mt-4 font-body text-sm font-semibold text-ink-soft">
+                  &mdash; Jerry Boritzki
+                </p>
+              </figure>
+              <p className="mt-8 font-body text-xl leading-relaxed text-ink-soft">
                 Jerry Boritzki spent over twenty years studying a doctrine the
                 church has long overlooked. <em>The Age of Accountability</em>{" "}
                 is his first release, a self-published work on a subject that,
