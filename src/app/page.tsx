@@ -119,18 +119,20 @@ const FAMILY_QUESTIONS = [
   },
 ];
 
-// Sermon series on the age of accountability (Oxbow Lake Baptist Church).
-// Add more parts here — just the YouTube id, a label, and a title.
-const SERMONS = [
+// Short vertical clips on the subject. Files live in /public/videos
+// (a .mp4 and matching .jpg poster per slug).
+const SHORTS = [
   {
-    id: "e-1HbG8T8Ro",
-    label: "Part 2",
-    title: "The Age of Accountability — Part 2",
+    slug: "teen-attitude",
+    title: "Teen Attitude: What 17–19 Year Olds Really Think",
   },
   {
-    id: "XpkSl6tm9es",
-    label: "Part 3",
-    title: "The Age of Accountability — Part 3",
+    slug: "my-journey",
+    title: "My Journey: Sin, Salvation, and Forgiveness at 24",
+  },
+  {
+    slug: "sin-of-ignorance",
+    title: "The Sin of Ignorance: God’s View on Children",
   },
 ];
 
@@ -174,7 +176,7 @@ export default function Home() {
               Quotes
             </a>
             <a className="transition hover:text-brick" href="#preaching">
-              Preaching
+              Watch
             </a>
             <a className="transition hover:text-brick" href="#articles">
               Articles
@@ -438,35 +440,35 @@ export default function Home() {
         <section id="preaching" className="bg-ivory">
           <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 md:py-28">
             <div className="max-w-3xl">
-              <SectionLabel>Preaching on the subject</SectionLabel>
+              <SectionLabel>Watch</SectionLabel>
               <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-                Hear the doctrine taught, verse by verse.
+                Short answers to a serious question.
               </h2>
               <p className="mt-5 font-body text-lg leading-relaxed text-ink-soft">
-                A sermon series working through the age of accountability from
-                Scripture. More messages will be added as they become available.
+                Brief clips on the age of accountability — what young people
+                really think, one believer’s testimony, and how God views
+                children.
               </p>
             </div>
-            <div className="mt-12 grid gap-8 md:grid-cols-2">
-              {SERMONS.map((sermon) => (
-                <figure key={sermon.id} className="min-w-0">
-                  <div className="relative aspect-video overflow-hidden rounded-xl shadow-[0_22px_54px_rgba(42,39,34,0.14)] ring-1 ring-ink/10">
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${sermon.id}`}
-                      title={sermon.title}
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="absolute inset-0 h-full w-full"
-                    />
+            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {SHORTS.map((short) => (
+                <figure key={short.slug} className="mx-auto w-full max-w-sm">
+                  <div className="relative aspect-[9/16] overflow-hidden rounded-2xl bg-ink shadow-[0_22px_54px_rgba(42,39,34,0.18)] ring-1 ring-ink/10">
+                    <video
+                      controls
+                      preload="metadata"
+                      playsInline
+                      poster={`/videos/${short.slug}.jpg`}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    >
+                      <source
+                        src={`/videos/${short.slug}.mp4`}
+                        type="video/mp4"
+                      />
+                    </video>
                   </div>
-                  <figcaption className="mt-4">
-                    <span className="font-body text-xs font-bold uppercase tracking-wide text-brick">
-                      {sermon.label}
-                    </span>
-                    <p className="mt-1 font-display text-2xl font-semibold leading-tight text-ink">
-                      {sermon.title}
-                    </p>
+                  <figcaption className="mt-4 font-display text-xl font-semibold leading-tight text-ink">
+                    {short.title}
                   </figcaption>
                 </figure>
               ))}
