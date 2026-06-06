@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllArticles } from "@/lib/articles";
 
+const SITE_URL = "https://www.theageofaccountability.com";
+
 export const metadata: Metadata = {
   title: "Articles",
   description:
@@ -10,13 +12,65 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/articles",
   },
+  openGraph: {
+    type: "website",
+    title: "Articles · The Age of Accountability",
+    description:
+      "Study notes and articles based on The Age of Accountability by Jerry Boritzki.",
+    url: "/articles",
+    siteName: "The Age of Accountability",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Articles · The Age of Accountability",
+    description:
+      "Study notes and articles based on The Age of Accountability by Jerry Boritzki.",
+  },
 };
 
 export default function ArticlesPage() {
   const articles = getAllArticles();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${SITE_URL}/articles#collection`,
+        url: `${SITE_URL}/articles`,
+        name: "Articles · The Age of Accountability",
+        description:
+          "Study notes and articles based on The Age of Accountability by Jerry Boritzki.",
+        inLanguage: "en-US",
+        isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
+        about: { "@type": "Book", "@id": `${SITE_URL}/#book` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${SITE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Articles",
+            item: `${SITE_URL}/articles`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="border-b border-ink/10 bg-ivory">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
           <Link href="/" aria-label="The Age of Accountability - home">

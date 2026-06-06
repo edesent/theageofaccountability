@@ -9,6 +9,7 @@ import {
   PAPERBACK_PRICE,
   PAPERBACK_PRICE_USD,
 } from "@/lib/book";
+import { EBOOK } from "@/lib/ebook";
 import PurchaseButton from "@/components/PurchaseButton";
 import MobileNav from "@/components/MobileNav";
 
@@ -47,19 +48,32 @@ const JSON_LD = {
       bookFormat: "https://schema.org/Paperback",
       datePublished: "2023-10-16",
       genre: "Religion & Spirituality",
+      publisher: { "@id": `${SITE_URL}/#author` },
       image: `${SITE_URL}/images/book-front.jpg`,
       abstract:
         "A biblical examination of the age of accountability — what Scripture teaches about young people, the love of God, and the moment a person becomes accountable for sin.",
       sameAs: AMAZON_URL,
-      offers: {
-        "@type": "Offer",
-        url: AMAZON_URL,
-        price: PAPERBACK_PRICE_USD.toFixed(2),
-        priceCurrency: "USD",
-        availability: "https://schema.org/InStock",
-        itemCondition: "https://schema.org/NewCondition",
-        seller: { "@type": "Organization", name: "Amazon" },
-      },
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Paperback",
+          url: AMAZON_URL,
+          price: PAPERBACK_PRICE_USD.toFixed(2),
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          itemCondition: "https://schema.org/NewCondition",
+          seller: { "@type": "Organization", name: "Amazon" },
+        },
+        {
+          "@type": "Offer",
+          name: "Ebook (PDF & EPUB)",
+          url: `${SITE_URL}/`,
+          price: (EBOOK.priceCents / 100).toFixed(2),
+          priceCurrency: EBOOK.currency.toUpperCase(),
+          availability: "https://schema.org/InStock",
+          seller: { "@id": `${SITE_URL}/#author` },
+        },
+      ],
     },
   ],
 };
