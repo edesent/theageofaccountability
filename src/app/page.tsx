@@ -442,7 +442,7 @@ export default function Home() {
             <div className="max-w-3xl">
               <SectionLabel>Watch</SectionLabel>
               <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-                Short answers to a serious question.
+                Quick answers to common questions.
               </h2>
               <p className="mt-5 font-body text-lg leading-relaxed text-ink-soft">
                 Brief clips on the age of accountability — what young people

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllArticles } from "@/lib/articles";
+import { getPublishedArticles } from "@/lib/articles";
 
 const SITE_URL = "https://www.theageofaccountability.com";
 const LAST_MODIFIED = new Date("2026-06-05");
@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    ...getAllArticles().map((article) => ({
+    ...getPublishedArticles().map((article) => ({
       url: `${SITE_URL}/articles/${article.slug}`,
       lastModified: LAST_MODIFIED,
       changeFrequency: "monthly" as const,

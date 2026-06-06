@@ -8,6 +8,8 @@ import { priceLabel } from "@/lib/ebook";
 import { AMAZON_URL, ISBN, PAPERBACK_PRICE } from "@/lib/book";
 import PurchaseButton from "@/components/PurchaseButton";
 
+const SITE_URL = "https://www.theageofaccountability.com";
+
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
@@ -38,17 +40,29 @@ export async function generateMetadata({
     return {};
   }
 
+  const isPublished = article.status === "published";
+
   return {
     title: article.title,
     description: article.excerpt,
     alternates: {
       canonical: `/articles/${article.slug}`,
     },
+    // Drafts stay reachable but are kept out of the index until finished.
+    robots: isPublished ? undefined : { index: false, follow: true },
     openGraph: {
       type: "article",
       title: article.title,
       description: article.excerpt,
       url: `/articles/${article.slug}`,
+      siteName: "The Age of Accountability",
+      authors: ["Jerry Boritzki"],
+      section: "The Age of Accountability",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt,
     },
   };
 }
@@ -61,8 +75,62 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  const articleUrl = `${SITE_URL}/articles/${article.slug}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${articleUrl}#article`,
+        headline: article.title,
+        description: article.excerpt,
+        url: articleUrl,
+        inLanguage: "en-US",
+        image: `${SITE_URL}/images/og.jpg`,
+        wordCount: article.wordCount,
+        articleSection: "The Age of Accountability",
+        author: {
+          "@type": "Person",
+          name: "Jerry Boritzki",
+          url: `${SITE_URL}/#author`,
+        },
+        publisher: { "@type": "Person", name: "Jerry Boritzki" },
+        mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+        isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}/#website` },
+        about: { "@type": "Book", "@id": `${SITE_URL}/#book` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${SITE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Articles",
+            item: `${SITE_URL}/articles`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: article.title,
+            item: articleUrl,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="border-b border-ink/10 bg-ivory">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
           <Link href="/" aria-label="The Age of Accountability - home">

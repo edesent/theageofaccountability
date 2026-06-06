@@ -121,6 +121,13 @@ export function getAllArticles() {
     .map(readArticle);
 }
 
+// Articles that are finished and safe to index. Drafts stay reachable on the
+// site but are kept out of the sitemap and marked noindex so search engines
+// don't index thin, unfinished pages.
+export function getPublishedArticles() {
+  return getAllArticles().filter((article) => article.status === "published");
+}
+
 export function getArticle(slug: string) {
   return getAllArticles().find((article) => article.slug === slug);
 }
