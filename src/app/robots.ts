@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/church";
+
+const SITE_URL = "https://www.theageofaccountability.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {
