@@ -2,18 +2,18 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "The Age of Accountability",
-    short_name: "Accountability",
+    name: "Perth Bible Church",
+    short_name: "Perth Bible",
     description:
-      "A doctrine grounded in Scripture, not human reasoning — the book by Jerry Boritzki.",
+      "Perth Bible Church in Amsterdam, New York exists to love God absolutely and love others sacrificially.",
     start_url: "/",
     display: "standalone",
-    background_color: "#fbf7ee",
-    theme_color: "#252821",
+    background_color: "#f7fbfd",
+    theme_color: "#11295c",
     icons: [
-      { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { src: "/church/favicon.png", sizes: "512x512", type: "image/png" },
       {
-        src: "/icon-512.png",
+        src: "/church/favicon.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "any",

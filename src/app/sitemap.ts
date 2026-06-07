@@ -1,28 +1,21 @@
 import type { MetadataRoute } from "next";
-import { getPublishedArticles } from "@/lib/articles";
+import { PAGE_SLUGS, SITE_URL } from "@/lib/church";
 
-const SITE_URL = "https://www.theageofaccountability.com";
-const LAST_MODIFIED = new Date("2026-06-05");
+const LAST_MODIFIED = new Date("2026-06-07");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: `${SITE_URL}/`,
       lastModified: LAST_MODIFIED,
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 1,
     },
-    {
-      url: `${SITE_URL}/articles`,
-      lastModified: LAST_MODIFIED,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    ...getPublishedArticles().map((article) => ({
-      url: `${SITE_URL}/articles/${article.slug}`,
+    ...PAGE_SLUGS.filter((slug) => slug !== "home").map((slug) => ({
+      url: `${SITE_URL}/${slug}`,
       lastModified: LAST_MODIFIED,
       changeFrequency: "monthly" as const,
-      priority: 0.7,
+      priority: slug === "imnew" || slug === "who-we-are" ? 0.9 : 0.7,
     })),
   ];
 }

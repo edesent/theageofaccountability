@@ -1,14 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Suspense } from "react";
-import MetaPixel from "@/components/MetaPixel";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["600", "700"],
   display: "swap",
 });
 
@@ -18,43 +16,30 @@ const body = Inter({
   display: "swap",
 });
 
-const SITE_URL = "https://www.theageofaccountability.com";
-const SITE_TITLE = "The Age of Accountability — a book by Jerry Boritzki";
+const SITE_URL = "https://perthbible.church";
+const SITE_TITLE = "Perth Bible Church";
 const SITE_DESCRIPTION =
-  "A doctrine grounded in Scripture, not human reasoning. Over two decades in the making, The Age of Accountability by Jerry Boritzki examines what the Bible itself teaches about young people, the love of God, and when accountability begins.";
+  "Perth Bible Church in Amsterdam, New York exists to love God absolutely and love others sacrificially.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
-    template: "%s · The Age of Accountability",
+    template: "%s | Perth Bible Church",
   },
   description: SITE_DESCRIPTION,
-  applicationName: "The Age of Accountability",
+  applicationName: SITE_TITLE,
   keywords: [
-    "Age of Accountability",
-    "Jerry Boritzki",
-    "Christian doctrine",
-    "age of accountability book",
-    "children and salvation",
-    "when does accountability begin",
-    "biblical doctrine",
-    "theology",
-    "Christian parenting",
-    "Sunday school doctrine",
-    "Christian book",
-    "Religion",
-    "homeschool",
-    "homeschooling",
-    "Sunday School",
-    "children's church",
-    "death of a child",
-    "loss of a child",
+    "Perth Bible Church",
+    "Amsterdam NY church",
+    "Perth Bible Christian Academy",
+    "church in Amsterdam New York",
+    "Bible church",
+    "Christian academy",
   ],
-  authors: [{ name: "Jerry Boritzki" }],
-  creator: "Jerry Boritzki",
-  publisher: "Jerry Boritzki",
-  category: "Religion & Spirituality",
+  authors: [{ name: "Perth Bible Church" }],
+  creator: "Perth Bible Church",
+  publisher: "Perth Bible Church",
   alternates: {
     canonical: "/",
   },
@@ -70,18 +55,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    type: "book",
+    type: "website",
     url: SITE_URL,
-    siteName: "The Age of Accountability",
+    siteName: SITE_TITLE,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     locale: "en_US",
     images: [
       {
-        url: "/images/og.jpg",
+        url: "/church/hero.jpeg",
         width: 1200,
-        height: 630,
-        alt: "The Age of Accountability by Jerry Boritzki",
+        height: 800,
+        alt: "Perth Bible Church gathering space",
       },
     ],
   },
@@ -89,12 +74,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: ["/images/og.jpg"],
+    images: ["/church/hero.jpeg"],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#252821",
+  themeColor: "#11295c",
   colorScheme: "light",
 };
 
@@ -108,12 +93,9 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-paper text-ink">
+      <body className="min-h-full bg-paper text-ink">
         {children}
         <Analytics />
-        <Suspense fallback={null}>
-          <MetaPixel />
-        </Suspense>
       </body>
     </html>
   );

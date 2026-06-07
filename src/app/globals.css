@@ -1,24 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #252821;
-  --color-slate: #2f4b54;
-  --color-ivory: #fbf7ee;
-  --color-paper: #f0e7d6;
-  --color-brick: #8b3f2b;
-  --color-action: #2f6b4f;
-  --color-action-deep: #245a41;
-  --color-brass: #d2a94a;
-  --color-sage: #8fa58b;
-  --color-ink-soft: #615a4d;
+  --color-deep: #11295c;
+  --color-blue: #2747a7;
+  --color-sky: #9bd8ff;
+  --color-mist: #eaf7ff;
+  --color-paper: #f7fbfd;
+  --color-ink: #172033;
+  --color-gold: #d8ab43;
 
   --font-display: var(--font-display), Georgia, serif;
   --font-body: var(--font-body), system-ui, sans-serif;
 }
 
 :root {
-  --background: #fbf7ee;
-  --foreground: #252821;
+  --background: #f7fbfd;
+  --foreground: #172033;
 }
 
 * {
@@ -33,9 +30,9 @@ html {
 
 body {
   background:
-    linear-gradient(rgba(37, 40, 33, 0.025) 1px, transparent 1px),
+    linear-gradient(rgba(39, 71, 167, 0.045) 1px, transparent 1px),
     var(--background);
-  background-size: 100% 28px;
+  background-size: 100% 30px;
   color: var(--foreground);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -60,51 +57,99 @@ a {
 }
 
 ::selection {
-  background: #d2a94a;
-  color: #252821;
+  background: #9bd8ff;
+  color: #11295c;
 }
 
-.slate-grid {
-  background:
-    linear-gradient(rgba(251, 247, 238, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(251, 247, 238, 0.055) 1px, transparent 1px),
-    radial-gradient(circle at 22% 26%, rgba(210, 169, 74, 0.18), transparent 28rem),
-    linear-gradient(135deg, #252821 0%, #2f4b54 52%, #1e211c 100%);
-  background-size:
-    48px 48px,
-    48px 48px,
-    auto,
-    auto;
+.button-primary,
+.button-secondary,
+.button-outline,
+.button-on-dark {
+  align-items: center;
+  border-radius: 6px;
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 900;
+  justify-content: center;
+  letter-spacing: 0.14em;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.05rem;
+  text-transform: uppercase;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
 }
 
-.book-stage {
-  position: relative;
-  isolation: isolate;
+.button-primary {
+  background: #9bd8ff;
+  border: 1px solid #9bd8ff;
+  color: #11295c;
 }
 
-.book-stage::before,
-.book-stage::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  border: 1px solid rgba(251, 247, 238, 0.16);
-  border-radius: 8px;
-  inset: 9% 4% 8% 22%;
-  transform: rotate(3deg);
+.button-primary:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  transform: translateY(-1px);
 }
 
-.book-stage::after {
-  inset: 14% 11% 3% 15%;
-  border-color: rgba(210, 169, 74, 0.25);
-  transform: rotate(-4deg);
+.button-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
 }
 
-.book-shadow {
-  position: absolute;
-  inset: auto 8% -2rem 8%;
-  z-index: -1;
-  height: 5rem;
-  background: rgba(0, 0, 0, 0.38);
-  border-radius: 50%;
-  filter: blur(24px);
+.button-secondary:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #11295c;
+  transform: translateY(-1px);
+}
+
+.button-outline {
+  background: #ffffff;
+  border: 1px solid rgba(155, 216, 255, 0.9);
+  color: #11295c;
+}
+
+.button-outline:hover {
+  background: #eaf7ff;
+  border-color: #2747a7;
+  color: #2747a7;
+  transform: translateY(-1px);
+}
+
+.button-on-dark {
+  background: transparent;
+  border: 1px solid rgba(155, 216, 255, 0.6);
+  color: #ffffff;
+}
+
+.button-on-dark:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #11295c;
+  transform: translateY(-1px);
+}
+
+.section-pad {
+  padding-bottom: clamp(4.5rem, 8vw, 7rem);
+  padding-top: clamp(4.5rem, 8vw, 7rem);
+}
+
+.section-title {
+  color: #11295c;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-weight: 700;
+  line-height: 0.96;
+}
+
+.footer-heading {
+  color: #9bd8ff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
