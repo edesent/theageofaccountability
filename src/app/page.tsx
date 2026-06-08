@@ -386,7 +386,7 @@ export default function Home() {
             <div className="mx-auto max-w-3xl text-center">
               <SectionLabel>Quotes</SectionLabel>
               <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-                Lines that carry the weight of the subject.
+                What readers are saying.
               </h2>
             </div>
 
