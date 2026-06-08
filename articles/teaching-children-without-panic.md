@@ -25,7 +25,7 @@ The book argues that God's grace gives parents and teachers room to breathe.
 
 Children should be taught the gospel early. They should hear about creation, sin, judgment, the cross, resurrection, repentance, faith, forgiveness, and eternal life. They should see parents who pray, repent, worship, forgive, and obey.
 
-But teaching is not the same as forcing.
+But now we can teach with patience.
 
 Isaiah's language of "precept upon precept" captures the spirit of faithful instruction. Truth is layered into the life of a child over time. Some lessons are understood quickly. Others take years. Some truths are memorized long before they are loved.
 
