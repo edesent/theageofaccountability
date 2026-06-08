@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { createPortal, useFormStatus } from "react-dom";
 import { createCheckoutSession } from "@/app/actions";
+import { EBOOK_ENABLED } from "@/lib/book";
 import { fbTrack } from "@/lib/fbq";
 
 const priceToNumber = (s: string) => Number(s.replace(/[^0-9.]/g, "")) || undefined;
@@ -81,15 +82,7 @@ function EbookSubmit({ price }: { price: string }) {
   );
 }
 
-export default function PurchaseButton({
-  amazonUrl,
-  ebookPrice,
-  paperbackPrice,
-  isbn,
-  label = "Buy the book",
-  variant = "solid",
-  className = "",
-}: {
+type PurchaseButtonProps = {
   amazonUrl: string;
   ebookPrice: string;
   paperbackPrice: string;
@@ -97,7 +90,57 @@ export default function PurchaseButton({
   label?: ReactNode;
   variant?: Variant;
   className?: string;
-}) {
+};
+
+export default function PurchaseButton(props: PurchaseButtonProps) {
+  // While the ebook is off, every "Buy" button links straight to the Amazon
+  // paperback. Flip EBOOK_ENABLED in lib/book.ts to restore the edition picker.
+  return EBOOK_ENABLED ? (
+    <EditionPickerButton {...props} />
+  ) : (
+    <AmazonLinkButton {...props} />
+  );
+}
+
+// Amazon-only mode. AddToCart still fires (the pixel adds the event source URL,
+// event time, the _fbc cookie, and the client user agent automatically).
+function AmazonLinkButton({
+  amazonUrl,
+  paperbackPrice,
+  label = "Buy the book",
+  variant = "solid",
+  className = "",
+}: PurchaseButtonProps) {
+  return (
+    <a
+      href={amazonUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() =>
+        fbTrack("AddToCart", {
+          content_name: "The Age of Accountability (paperback)",
+          content_type: "product",
+          value: priceToNumber(paperbackPrice),
+          currency: "USD",
+        })
+      }
+      className={`${TRIGGER_BASE} ${TRIGGER_VARIANT[variant]} ${className}`}
+    >
+      {label}
+      <Arrow />
+    </a>
+  );
+}
+
+function EditionPickerButton({
+  amazonUrl,
+  ebookPrice,
+  paperbackPrice,
+  isbn,
+  label = "Buy the book",
+  variant = "solid",
+  className = "",
+}: PurchaseButtonProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {

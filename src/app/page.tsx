@@ -9,7 +9,6 @@ import {
   PAPERBACK_PRICE,
   PAPERBACK_PRICE_USD,
 } from "@/lib/book";
-import { EBOOK } from "@/lib/ebook";
 import PurchaseButton from "@/components/PurchaseButton";
 import MobileNav from "@/components/MobileNav";
 
@@ -53,27 +52,16 @@ const JSON_LD = {
       abstract:
         "A biblical examination of the age of accountability — what Scripture teaches about young people, the love of God, and the moment a person becomes accountable for sin.",
       sameAs: AMAZON_URL,
-      offers: [
-        {
-          "@type": "Offer",
-          name: "Paperback",
-          url: AMAZON_URL,
-          price: PAPERBACK_PRICE_USD.toFixed(2),
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
-          itemCondition: "https://schema.org/NewCondition",
-          seller: { "@type": "Organization", name: "Amazon" },
-        },
-        {
-          "@type": "Offer",
-          name: "Ebook (PDF & EPUB)",
-          url: `${SITE_URL}/`,
-          price: (EBOOK.priceCents / 100).toFixed(2),
-          priceCurrency: EBOOK.currency.toUpperCase(),
-          availability: "https://schema.org/InStock",
-          seller: { "@id": `${SITE_URL}/#author` },
-        },
-      ],
+      offers: {
+        "@type": "Offer",
+        name: "Paperback",
+        url: AMAZON_URL,
+        price: PAPERBACK_PRICE_USD.toFixed(2),
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
+        seller: { "@type": "Organization", name: "Amazon" },
+      },
     },
   ],
 };
@@ -102,6 +90,21 @@ const QUOTES = [
     quote:
       "This could be the most important book any Christian has read in the past decade.",
     source: "Reader response",
+  },
+  {
+    quote:
+      "An excellent book addressing a topic that is rarely taught. An easy, brief read that helps us understand God’s wonderful grace toward man. It will help you love the God of the Bible even more than you do.",
+    source: "Verified Amazon review",
+  },
+  {
+    quote:
+      "Very beautifully written, and an important topic that should be discussed in churches.",
+    source: "Verified Amazon review",
+  },
+  {
+    quote:
+      "Boritzki does a great job illustrating the grace of God and reinforces everything with Scripture. A great book for anyone who wants to learn more about the love our Lord has for all of His children.",
+    source: "Verified Amazon review",
   },
 ];
 
@@ -241,7 +244,7 @@ export default function Home() {
                 </a>
               </div>
               <p className="mt-4 font-body text-sm text-ivory/70">
-                Available as an instant ebook download or paperback from Amazon.
+                Available in paperback from Amazon.
               </p>
               <div className="mt-12 grid max-w-2xl grid-cols-3 border-y border-ivory/16">
                 <div className="py-4 pr-4">
@@ -637,7 +640,7 @@ export default function Home() {
                 isbn={ISBN}
               />
               <p className="font-body text-xs font-semibold uppercase text-ivory/70">
-                Ebook &amp; paperback &middot; ISBN {ISBN}
+                Paperback &middot; ISBN {ISBN}
               </p>
             </div>
           </div>

@@ -223,8 +223,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 </h2>
                 <p className="mt-3 font-body text-base leading-relaxed text-ivory/76">
                   Read the whole biblical argument in{" "}
-                  <em>The Age of Accountability</em> &mdash; available as an
-                  ebook or paperback.
+                  <em>The Age of Accountability</em> &mdash; available in
+                  paperback from Amazon.
                 </p>
               </div>
               <div className="shrink-0">

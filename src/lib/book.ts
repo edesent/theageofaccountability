@@ -1,5 +1,12 @@
 // Shared purchase constants used by the homepage and article pages.
 
+// Master switch for the digital edition. While false, the whole site sells
+// only the Amazon paperback: the "Buy" buttons link straight to Amazon, the
+// edition picker is hidden, and the ebook offer is dropped from structured
+// data. Flip to true to bring back the Stripe ebook checkout — no other code
+// changes needed.
+export const EBOOK_ENABLED = false;
+
 export const AMAZON_URL =
   "https://www.amazon.com/Age-Accountability-Jerry-Boritzki/dp/B0DN8962YR";
 
