@@ -437,8 +437,8 @@ export default function Home() {
                 Written for everyone who shapes a young life.
               </h2>
               <p className="mt-6 max-w-2xl font-body text-lg leading-relaxed text-ivory/72">
-                If the doctrine is true, it belongs in classrooms, churches,
-                family conversations, and the quiet work of discipleship.
+                This doctrine needs to be discussed in churches, classrooms
+                and family conversations.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 {AUDIENCE.map((item) => (
