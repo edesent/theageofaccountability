@@ -11,9 +11,19 @@ declare global {
 
 export const FACEBOOK_PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
 
-export function fbTrack(event: string, params?: FbqParams): void {
+// `options.eventID` lets the browser event share an id with a server-side
+// Conversions API event so Meta deduplicates the two (counts one conversion).
+type FbqOptions = { eventID?: string };
+
+export function fbTrack(
+  event: string,
+  params?: FbqParams,
+  options?: FbqOptions,
+): void {
   if (typeof window === "undefined" || typeof window.fbq !== "function") return;
-  if (params) {
+  if (params && options) {
+    window.fbq("track", event, params, options);
+  } else if (params) {
     window.fbq("track", event, params);
   } else {
     window.fbq("track", event);

@@ -33,6 +33,7 @@ export default async function SuccessPage({
           <PurchaseTracking
             value={EBOOK.priceCents / 100}
             currency={EBOOK.currency.toUpperCase()}
+            eventId={`purchase_${sessionId}`}
           />
           <p className="font-body text-xs font-bold uppercase text-brick">
             Payment confirmed

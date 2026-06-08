@@ -1,6 +1,6 @@
 "use server";
 
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { getStripe } from "@/lib/stripe";
 import { EBOOK } from "@/lib/ebook";
@@ -12,6 +12,20 @@ export async function createCheckoutSession() {
   const host = h.get("x-forwarded-host") ?? h.get("host");
   const proto = h.get("x-forwarded-proto") ?? "https";
   const origin = `${proto}://${host}`;
+
+  // Capture the Meta Pixel identifiers now, while we still have the browser
+  // context, and stash them on the session. The Stripe webhook (which has no
+  // browser context) reads them back to send a high-match Purchase event via
+  // the Conversions API.
+  const c = await cookies();
+  const forwardedFor = h.get("x-forwarded-for") ?? "";
+  const metaTracking = {
+    fbc: c.get("_fbc")?.value ?? "",
+    fbp: c.get("_fbp")?.value ?? "",
+    client_user_agent: h.get("user-agent") ?? "",
+    client_ip: forwardedFor.split(",")[0]?.trim() ?? "",
+    event_source_url: h.get("referer") ?? `${origin}/`,
+  };
 
   const session = await getStripe().checkout.sessions.create({
     mode: "payment",
@@ -28,6 +42,11 @@ export async function createCheckoutSession() {
         },
       },
     ],
+    // Collect name + address + phone so the Purchase conversion can be matched
+    // on City/State/Zip/Country/Phone/Name (better Meta attribution).
+    billing_address_collection: "required",
+    phone_number_collection: { enabled: true },
+    metadata: metaTracking,
     // Stripe collects the buyer's email; we watermark the PDF with it.
     success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/?canceled=1`,

@@ -120,9 +120,14 @@ export default function PurchaseButton({
         type="button"
         onClick={() => {
           setOpen(true);
-          fbTrack("ViewContent", {
+          // "Buy" click = intent to purchase → AddToCart. The pixel attaches
+          // event source URL, event time, the _fbc cookie, and the client user
+          // agent automatically.
+          fbTrack("AddToCart", {
             content_name: "The Age of Accountability",
             content_type: "product",
+            value: priceToNumber(ebookPrice),
+            currency: "USD",
           });
         }}
         className={`${TRIGGER_BASE} ${TRIGGER_VARIANT[variant]} ${className}`}
